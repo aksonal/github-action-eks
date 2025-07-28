@@ -85,4 +85,5 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: sk22tp/react-app-test:latest
-  
+        #If you don’t provide a run: block, the container will start without a command, resulting in the sh -c default.
+          run: npm start
