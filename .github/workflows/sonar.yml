@@ -52,6 +52,16 @@ jobs:
           name: trivy-file-system-scan-report
           path: '${{ github.workspace }}/trivy-file-scan-report.json'
 
+      - name: Build Docker image & push to DockerHub
+        uses: mr-smithers-excellent/docker-build-push@v4
+        with:
+          image: sk22tp/react-app-test #docker image name
+          tag: latest
+          registry: docker.io
+          #dockerfile: Dockerfile #not required field
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
         
           
 
