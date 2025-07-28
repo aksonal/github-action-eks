@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  Run-Sonarqube-Scan:
+  Build-Analuze-Scan:
     name: Sonar Scan
     runs-on: github-action-eks #self-hosted runner label on ec2
 
@@ -74,3 +74,15 @@ jobs:
         with:
           name: trivy-image-scan-report
           path: '${{ github.workspace }}/trivy-image-report.json'
+
+  Deploy:
+    needs: Build-Analuze-Scan
+    name: Docker container
+    runs-on: github-action-eks #self-hosted runner label on ec2
+
+    steps: 
+      - name: Run Docker Container
+        uses: addnab/docker-run-action@v3
+        with:
+          image: sk22tp/react-app-test:latest
+  
