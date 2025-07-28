@@ -61,3 +61,16 @@ jobs:
           #dockerfile: Dockerfile #not required field
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Run Trivy scanner on Docker image
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: 'image'
+          scan-ref: 'sk22tp/react-app-test:latest'
+          output: trivy-image-report.json
+
+      - name: Upload trivy image scan report as a Github artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-image-scan-report
+          path: '${{ github.workspace }}/trivy-image-report.json'
