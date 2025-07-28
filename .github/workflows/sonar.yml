@@ -44,7 +44,13 @@ jobs:
         with: 
           scan-type: 'fs' #tells Trivy to use the filesystem mode.
           scan-ref: '.'  # Same as running `trivy fs .`
-          path: trivy-file-scan-report.json
+          output: trivy-file-scan-report.json
+
+      - name: Upload trivy report as a Github artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-file-system-scan-report
+          path: '${{ github.workspace }}/trivy-file-scan-report.json'
 
         
           
