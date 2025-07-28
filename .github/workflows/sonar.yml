@@ -36,6 +36,11 @@ jobs:
 
       - name: Install npm dependencies
         run: npm install
+
+      - name: Trivy File Scan
+        run: trivy ts . > tricy-file-scan.txt
+
+        
           
 
       
