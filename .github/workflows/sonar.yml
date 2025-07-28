@@ -61,8 +61,3 @@ jobs:
           #dockerfile: Dockerfile #not required field
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-        
-          
-
-      
