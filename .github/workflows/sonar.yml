@@ -90,11 +90,13 @@ jobs:
 
     steps: 
       - name: Run Docker Container
-        uses: addnab/docker-run-action@v3
-        with:
-          image: sk22tp/react-app-test:latest
-        #If you don’t provide a run: block, the container will start without a command, resulting in the sh -c default.
-          #run: npm start
-          run: timeout 180s npm start
+        # uses: addnab/docker-run-action@v3
+        # with:
+        #   image: sk22tp/react-app-test:latest
+        #   options: -p 3000:3000
+        # #If you don’t provide a run: block, the container will start without a command, resulting in the sh -c default.
+        #   #run: npm start
+        #   run: timeout 180s npm start || exit 0
+        run: docker run -d -p 3000:3000 --name tic-tac-toe sk22tp/react-app-test:latest
 
           
